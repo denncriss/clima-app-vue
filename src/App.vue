@@ -68,14 +68,15 @@ body {
   background-color: #0cbaba;
   background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
   font-family: 'Poppins', sans-serif;
-  height: 100vh;
-}
-.content {
-  height: 100vh;
+  height:100vh;
+  min-height: 35rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+}
+.content {
   padding: 0 0.7rem;
 }
 .content > * {

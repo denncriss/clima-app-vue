@@ -1,7 +1,7 @@
 <template>
   <input
     class="search-city"
-    type="search"
+    type="text"
     @keyup.enter="getWeather"
     v-model="searchCity"
     placeholder="search by city"
@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 .search-city {
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 0.3rem;
   border-radius: 0.3rem;
