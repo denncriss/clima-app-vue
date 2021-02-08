@@ -31,7 +31,7 @@
       </div>
       <div class="weather-description">
         <img src="../assets/img/humidity.svg" alt="icon-speed" class="icon" />
-        <p class="description">{{ weather.main.humidity }}</p>
+        <p class="description">{{ weather.main.humidity }} %</p>
       </div>
     </div>
   </div>
@@ -74,10 +74,10 @@ export default {
   border: none;
 }
 .bg-cold {
-  background: url('../assets/img/cold.jpg');
+  background: url('../assets/img/clima-cold.jpg');
 }
 .bg-hot {
-  background: url('../assets/img/hot.jpg');
+  background: url('../assets/img/clima-hot.jpg');
 }
 .content-box {
   box-shadow: 0px 4px 12px rgba(14, 30, 36, 0.4);
@@ -129,14 +129,15 @@ export default {
   margin-top: -2rem;
 }
 .temp-description {
-  margin: 0.3rem 0;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   text-shadow: 1px 3px rgba(0, 0, 0, 0.09);
 }
 .btn {
   margin: 0.5rem 0;
-  background-color: yellowgreen;
-  padding: 0.6rem 2rem;
+  background: linear-gradient(to bottom, #719fb0 ,#726a95);
+  padding: 0.6rem 1.5rem;
+  border-radius: .2rem;
+  box-shadow: .06rem .18rem rgba(0, 0, 0, 0.2) ;
 }
 .box-botton {
   z-index: 10;
@@ -149,8 +150,8 @@ export default {
   align-items: center;
   margin-top: 1rem;
   margin-bottom: -1rem;
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: rgb(241, 241, 241);
 }
 .box-botton > * {
   display: flex;

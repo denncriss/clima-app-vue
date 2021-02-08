@@ -3,7 +3,7 @@
   <input
     class="search-city"
     type="text"
-    v-model="searchCity"
+    v-model="city"
     placeholder="search by city"
   />
 </form>
@@ -11,15 +11,16 @@
 
 <script>
 export default {
+  name:'SearchWeather',
   data() {
     return {
-      searchCity: '',
+      city: '',
     };
   },
   methods: {
     getWeather() {
-      this.$emit('get-weather-city', this.searchCity);
-      this.searchCity= ""
+      this.$emit('get-weather-city', this.city);
+      this.city= ""
     },
   },
 };

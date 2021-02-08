@@ -5,10 +5,6 @@
       <BoxWeather :weather="weather" />
     </div>
     <div class="not-city" v-else>
-      no location
-      <p class="not-location">
-        please use the search input or activate the location
-      </p>
       <Loader />
     </div>
   </div>
@@ -27,25 +23,44 @@ export default {
       apiKey: '96675e1c8dbbf99d321bbdf2ba16fb63',
       urlBase: 'https://api.openweathermap.org/data/2.5/',
       weather: {},
+      coords: {},
     };
   },
 
-  async mounted() {
-    this.getLocation();
+  mounted() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => this.getCoordinates(position),
+        this.onError
+      );
+    }
+  },
+  computed: {
+    generateUrl() {
+      return `${this.urlBase}weather?lat=${this.coords.lat}&lon=${this.coords.long}&appid=${this.apiKey}`;
+    },
   },
   methods: {
-    getLocation() {
-      navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude;
-        let long = position.coords.longitude;
-        this.getWeatherPosition(lat, long);
-      });
+    //
+    getCoordinates(position) {
+      this.coords = {
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      };
+      this.getWeather(this.generateUrl);
     },
-    getWeatherPosition(lat, long) {
-      let url = `${this.urlBase}weather?lat=${lat}&lon=${long}&appid=${this.apiKey}`;
-      this.getWeather(url);
+    async onError() {
+      const key = '4adc08e53ddf42ff9ed2388f8e8bf43d';
+      let url = `https://api.ipgeolocation.io/ipgeo?apiKey=${key}`;
+      let res = await axios.get(url);
+      let data = res.data;
+      this.coords = {
+        lat: data.latitude,
+        long: data.longitude,
+      };
+      this.getWeather(this.generateUrl);
     },
-
+    //
     getWeatherCity(city) {
       let url = `${this.urlBase}weather?q=${city}&appid=${this.apiKey}`;
       this.getWeather(url);
@@ -68,12 +83,11 @@ body {
   background-color: #0cbaba;
   background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
   font-family: 'Poppins', sans-serif;
-  height:100vh;
+  height: 100vh;
   min-height: 35rem;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 .content {
   padding: 0 0.7rem;
