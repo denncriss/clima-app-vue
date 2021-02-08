@@ -71,13 +71,16 @@ body {
   height:100vh;
   min-height: 35rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
 }
 .content {
   padding: 0 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .content > * {
   display: flex;
