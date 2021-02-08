@@ -1,11 +1,12 @@
 <template>
+<form @submit.prevent="getWeather()">
   <input
     class="search-city"
     type="text"
-    @keyup.enter="getWeather"
     v-model="searchCity"
     placeholder="search by city"
   />
+</form>
 </template>
 
 <script>
@@ -18,13 +19,16 @@ export default {
   methods: {
     getWeather() {
       this.$emit('get-weather-city', this.searchCity);
-      this.search= ""
+      this.searchCity= ""
     },
   },
 };
 </script>
 
 <style scoped>
+form{
+  width: 100%;
+}
 .search-city {
   padding: 0.5rem;
   margin-top: 1rem;
